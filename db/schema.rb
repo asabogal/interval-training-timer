@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2019_01_20_180421) do
     t.integer "rest"
     t.boolean "running", default: false
     t.integer "running_time", default: 0
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
