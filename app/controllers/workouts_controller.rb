@@ -2,8 +2,7 @@ class WorkoutsController < ApplicationController
 
   def index
     @workouts = Workout.all
-    json = @workouts.to_json
-    render json: json
+    render json: @workouts, status: 200
   end
 
 end
