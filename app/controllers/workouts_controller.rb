@@ -5,4 +5,20 @@ class WorkoutsController < ApplicationController
     render json: @workouts, status: 200
   end
 
+  def create
+    #must find current user and .build workouts with (workoutparams) ??
+    @workout = Workout.new(workout_params)
+    if @workout.save
+      render json: @workout, status: :created, location: @workout
+    else
+      render json: @workout.errors, status: :unprocessable_entity
+    end
+  end
+
+  private 
+
+  def workout_params
+    params.require(:workout).permit(:name, :sets, :sets_done, :interval, :rest, :running, :running_time)
+  end
+
 end
