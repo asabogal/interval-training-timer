@@ -6,7 +6,9 @@ class WorkoutsController < ApplicationController
   end
 
   def create
-    #must find current user and .build workouts with (workoutparams) ??
+    #must find current user and .build workouts with (workoutparams) ??:
+       # @user = User.find(1)
+       # @workout = @user.workouts.build(workout_params)
     @workout = Workout.new(workout_params)
     if @workout.save
       render json: @workout, status: :created, location: @workout
