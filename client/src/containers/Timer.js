@@ -53,13 +53,52 @@ class Timer extends React.Component {
 
 //// TIMER SETTINGS ////
 
-setLowIntensity = () => {
-  this.setState(this.lowIntensitySettings)
-}
+  setLowIntensity = () => {
+    this.setState(this.lowIntensitySettings)
+  }
 
-setHighIntensity = () => {
-  this.setState(this.highIntensitySettings)
-}
+  setHighIntensity = () => {
+    this.setState(this.highIntensitySettings)
+  }
+
+  //// TIMER CONTROLS /////
+
+  handleStartStop = () => {
+    if (!this.state.running) {
+      this.startTimer()
+    } else {
+      this.stopTimer()
+    }
+  }
+
+  startTimer = () => {
+    this.initialState = this.state
+
+    if (this.state.sets > 0) {
+      this.setState({
+        running: false  
+      })
+      this.restTimer = setInterval(this.restCountdown, 1000)
+
+    } else {
+      this.setState({
+        running_sets: this.state.sets
+      })
+    }
+  }
+
+  restCountdown = () => {
+    const currentSeconds = this.state.rest - 1
+    const elapsedTime = this.state.running_time + 1
+
+    this.setState({
+      rest: currentSeconds,
+      running_time: elapsedTime
+    })
+  }
+
+
+
 
   render() {
     console.log(this.state)
@@ -70,9 +109,16 @@ setHighIntensity = () => {
           setLowIntensity={this.setLowIntensity}
         />
 
-        {/* <TimerSettings/>
+        <h1>{this.state.rest}</h1>
+        <h1>{this.state.interval}</h1>
+
+        <button onClick={this.handleStartStop}>Start</button>
+        <button>Reset</button>
+
+        {/* 
         <TimerDisplay/>
-        <TimerControls/> */}
+        <TimerControls/> 
+        */}
       </div>
     );
   }
