@@ -61,6 +61,51 @@ class Timer extends React.Component {
     this.currentSettings = this.highIntensitySettings
   }
 
+//// TIMER DISPLAY /////
+
+renderTimer = (interval, rest) => {
+  if (rest > 0) {
+    return this.renderRest(rest)
+  } else if (rest === 0) {
+    return this.renderInterval(interval)
+  } else {
+    return <h3>--</h3>
+  }
+}
+
+renderRest = (rest) => {
+  let minutes = Math.floor(rest / 60)
+  let seconds = rest - (minutes * 60)
+
+  if (seconds < 10) {
+    return <h1>0{minutes}:0{seconds}</h1>
+  } else {
+    return <h1>0{minutes}:{seconds}</h1>
+  }
+}
+
+renderInterval = (interval) => {
+  let minutes = Math.floor(interval / 60)
+  let seconds = interval - minutes * 60
+
+  if (seconds < 10) {
+    return <h1>0{minutes}:0{seconds}</h1>
+  } else {
+    return <h1>0{minutes}:{seconds}</h1> 
+  }
+}
+
+renderRunningTime = (runningTime) => {
+  let minutes = Math.floor(runningTime / 60)
+  let seconds = runningTime - minutes * 60
+  
+    if (seconds < 10) {
+      return <h2>Elapsed: 0{minutes}:0{seconds}</h2>
+    } else {
+      return <h2>Elapsed: 0{minutes}:{seconds}</h2> 
+    }
+}
+
 //// TIMER CONTROLS /////
 
   handleStartStop = () => {
@@ -139,7 +184,7 @@ class Timer extends React.Component {
 
  
   render() {
-    const { name, rest, interval, running_sets } = this.state
+    const { name, rest, interval, running_sets, running_time } = this.state
     const { sets } = this.currentSettings
    
     return (
@@ -151,8 +196,8 @@ class Timer extends React.Component {
 
         <h5>{name}</h5>
         <h3>Sets: {running_sets + 1} / {sets} </h3>
-        <h1>{rest}</h1>
-        <h1>{interval}</h1>
+        {this.renderTimer(interval, rest)}
+        {this.renderRunningTime(running_time)}
 
         <TimerControls 
           handleStartStop={this.handleStartStop}
