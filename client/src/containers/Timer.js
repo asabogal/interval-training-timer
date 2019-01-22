@@ -105,7 +105,7 @@ class Timer extends React.Component {
   intervalCountdown = () => {
     const currentSeconds = this.state.interval - 1
     const elapsedTime = this.state.running_time + 1
-
+  
     this.setState({
       interval: currentSeconds,
       running_time: elapsedTime
@@ -117,11 +117,17 @@ class Timer extends React.Component {
     }
   }
 
-
+  stopTimer = () => {
+    clearInterval(this.restTimer)
+    clearInterval(this.intervalTimer)
+    this.setState({
+      running: false
+    })
+  }
 
   render() {
     console.log(this.state)
-    const { rest, interval, sets, running_sets } = this.state
+    const { rest, interval, sets, running, running_sets } = this.state
 
     return (
       <div>
@@ -129,11 +135,11 @@ class Timer extends React.Component {
           setHighIntensity={this.setHighIntensity}
           setLowIntensity={this.setLowIntensity}
         />
-        <h1>Sets Remaining: {sets}</h1>
+        <h1>Sets Remaining: {running_sets + 1} / {sets}</h1>
         <h1>{rest}</h1>
         <h1>{interval}</h1>
 
-        <button onClick={this.handleStartStop}>Start</button>
+        <button onClick={this.handleStartStop}>{running ? 'Stop' : 'Start'}</button>
         <button>Reset</button>
 
         {/* 
