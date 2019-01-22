@@ -63,48 +63,7 @@ class Timer extends React.Component {
 
 //// TIMER DISPLAY /////
 
-renderTimer = (interval, rest) => {
-  if (rest > 0) {
-    return this.renderRest(rest)
-  } else if (rest === 0) {
-    return this.renderInterval(interval)
-  } else {
-    return <h3>--</h3>
-  }
-}
 
-renderRest = (rest) => {
-  let minutes = Math.floor(rest / 60)
-  let seconds = rest - (minutes * 60)
-
-  if (seconds < 10) {
-    return <h1>0{minutes}:0{seconds}</h1>
-  } else {
-    return <h1>0{minutes}:{seconds}</h1>
-  }
-}
-
-renderInterval = (interval) => {
-  let minutes = Math.floor(interval / 60)
-  let seconds = interval - minutes * 60
-
-  if (seconds < 10) {
-    return <h1>0{minutes}:0{seconds}</h1>
-  } else {
-    return <h1>0{minutes}:{seconds}</h1> 
-  }
-}
-
-renderRunningTime = (runningTime) => {
-  let minutes = Math.floor(runningTime / 60)
-  let seconds = runningTime - minutes * 60
-  
-    if (seconds < 10) {
-      return <h2>Elapsed: 0{minutes}:0{seconds}</h2>
-    } else {
-      return <h2>Elapsed: 0{minutes}:{seconds}</h2> 
-    }
-}
 
 //// TIMER CONTROLS /////
 
@@ -194,10 +153,14 @@ renderRunningTime = (runningTime) => {
           setLowIntensity={this.setLowIntensity}
         />
 
-        <h5>{name}</h5>
-        <h3>Sets: {running_sets + 1} / {sets} </h3>
-        {this.renderTimer(interval, rest)}
-        {this.renderRunningTime(running_time)}
+        <TimerDisplay
+          name={name}
+          runningSets={running_sets}
+          sets={sets}
+          interval={interval}
+          rest={rest}
+          runningTime={running_time}
+        />
 
         <TimerControls 
           handleStartStop={this.handleStartStop}
@@ -207,7 +170,6 @@ renderRunningTime = (runningTime) => {
 
         {/* 
         <TimerDisplay/>
-        <TimerControls/> 
         */}
       </div>
     );
