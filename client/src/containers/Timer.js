@@ -17,9 +17,9 @@ class Timer extends React.Component {
       running_time: 0
     };
 
-    ///DEFAULT BUTTON SETTINGS///
+    //// DEFAULT BUTTON SETTINGS ////
 
-    this.highIntensity = {
+    this.highIntensitySettings = {
       name: 'High Intensity',
       sets: 20,
       running_sets: 0,
@@ -29,7 +29,7 @@ class Timer extends React.Component {
       running_time: 0
     }
 
-    this.lowIntensity = {
+    this.lowIntensitySettings = {
       name: 'Low Intensity',
       sets: 10,
       running_sets: 0,
@@ -48,13 +48,25 @@ class Timer extends React.Component {
       running: false,
       running_time: 0
     }
-
   }
+
+
+//// TIMER SETTINGS ////
+
+setLowIntensity = () => {
+  this.setState(this.lowIntensitySettings)
+}
+
+setHighIntensity = () => {
+  this.setState(this.highIntensitySettings)
+}
+
   render() {
+    console.log(this.state)
     return (
       <div>
-        <button>Low Intensity</button>
-        <button>High Intensity</button>
+        <button onClick={this.setLowIntensity} >Low Intensity</button>
+        <button onClick={this.setHighIntensity}>High Intensity</button>
         <button>Customize</button>
         {/* <TimerSettings/>
         <TimerDisplay/>
