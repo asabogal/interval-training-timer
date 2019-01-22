@@ -3,7 +3,6 @@ import TimerSettings from '../components/Timer/TimerSettings'
 import TimerDisplay from '../components/Timer/TimerDisplay'
 import TimerControls from '../components/Timer/TimerControls'
 import intro_alert from '../Alerts/IntroAlert.mp3'
-import rest_alert from '../Alerts/RestAlert.mp3'
 import interval_alert from '../Alerts/IntervalAlert.mp3'
 
 
@@ -56,7 +55,7 @@ class Timer extends React.Component {
 
     this.alerts = {
       introAlert: new Audio(intro_alert),
-      restAlert: new Audio(rest_alert),
+
       intervalAlert: new Audio(interval_alert)
     }
   }
@@ -163,8 +162,10 @@ class Timer extends React.Component {
     const intervalAlert = this.alerts.intervalAlert
    
      if (this.state.rest === 3) {
+      introAlert.volume = 0.3
       introAlert.play() 
     } else if (this.state.interval === 0){
+      intervalAlert.volume = 0.3
       intervalAlert.play() 
     }
 
