@@ -23,15 +23,29 @@
 }
 
 .container-bg {
-  color: rgb(42, 64, 134);
-  background-color: #61dafb
+  color: #185d68;
+  background-color: #d1edf5
+}
+
+.display-1 {
+  font-size: 8rem;
+  font-weight: 300;
+  line-height: 1.2;
+  color: #06c6e4;
+}
+
+.display-2 {
+  font-size: 8rem;
+  font-weight: 300;
+  line-height: 1.2;
+  color: #185d68;
 }
 
 .btn-circle.btn-xl {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   padding: 10px 16px;
-  border-radius: 100px;
+  border-radius: 75px;
   line-height: 1.33;
 }
 
@@ -41,7 +55,7 @@
   padding: 6px 0px;
   border-radius: 15px;
   text-align: center;
-  font-size: 50px;
+  font-size: 25px;
   line-height: 1.42857;
 }
 

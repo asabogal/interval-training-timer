@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container, Row, Col } from 'reactstrap'
 
 const TimerDisplay = (props) => {
 
@@ -25,9 +26,9 @@ const TimerDisplay = (props) => {
       let seconds = rest - (minutes * 60)
     
       if (seconds < 10) {
-        return <h1>0{minutes}:0{seconds}</h1>
+        return <h1 className="display-1">0{minutes}:0{seconds}</h1>
       } else {
-        return <h1>0{minutes}:{seconds}</h1>
+        return <h1 className="display-1">0{minutes}:{seconds}</h1>
       }
     }
     
@@ -36,9 +37,9 @@ const TimerDisplay = (props) => {
       let seconds = interval - minutes * 60
     
       if (seconds < 10) {
-        return <h1>0{minutes}:0{seconds}</h1>
+        return <h1 className="display-1">0{minutes}:0{seconds}</h1>
       } else {
-        return <h1>0{minutes}:{seconds}</h1> 
+        return <h1 className="display-1">0{minutes}:{seconds}</h1> 
       }
     }
     
@@ -47,19 +48,25 @@ const TimerDisplay = (props) => {
       let seconds = runningTime - minutes * 60
     
         if (seconds < 10) {
-          return <h2>Elapsed: 0{minutes}:0{seconds}</h2>
+          return <p>0{minutes}:0{seconds}</p>
         } else {
-          return <h2>Elapsed: 0{minutes}:{seconds}</h2> 
+          return <p>0{minutes}:{seconds}</p>
         }
     } 
 
   return (
-    <div>
-      <h5>{name}</h5>
-      <h4>Set {runningSets + 1}/{sets}</h4>
-      {renderTimer(interval, rest)}
-      {renderRunningTime(runningTime)}
-    </div>
+    <Container className="container-bg">
+      <Row>
+        <Col>
+        <h5>{name}</h5>
+        Set {runningSets + 1}/{sets}
+        {renderTimer(interval, rest)}
+        Elapsed
+        {renderRunningTime(runningTime)}
+       
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
