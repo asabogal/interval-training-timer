@@ -113,6 +113,7 @@ class Timer extends React.Component {
 
     if (currentSeconds === 0) {
       clearInterval(this.intervalTimer)
+
     }
   }
 
@@ -120,15 +121,17 @@ class Timer extends React.Component {
 
   render() {
     console.log(this.state)
+    const { rest, interval, sets, running_sets } = this.state
+
     return (
       <div>
         <TimerSettings
           setHighIntensity={this.setHighIntensity}
           setLowIntensity={this.setLowIntensity}
         />
-
-        <h1>{this.state.rest}</h1>
-        <h1>{this.state.interval}</h1>
+        <h1>Sets Remaining: {sets}</h1>
+        <h1>{rest}</h1>
+        <h1>{interval}</h1>
 
         <button onClick={this.handleStartStop}>Start</button>
         <button>Reset</button>
