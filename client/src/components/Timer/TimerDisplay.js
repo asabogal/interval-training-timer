@@ -26,9 +26,9 @@ const TimerDisplay = (props) => {
       let seconds = rest - (minutes * 60)
     
       if (seconds < 10) {
-        return <h1 className="display-1">0{minutes}:0{seconds}</h1>
+        return <h1 className="display-2">0{minutes}:0{seconds}</h1>
       } else {
-        return <h1 className="display-1">0{minutes}:{seconds}</h1>
+        return <h1 className="display-2">0{minutes}:{seconds}</h1>
       }
     }
     
