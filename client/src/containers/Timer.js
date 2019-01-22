@@ -18,8 +18,7 @@ class Timer extends React.Component {
     };
 
 //// DEFAULT BUTTON SETTINGS ////
-
-  // refactor settings? ; put in their own file?
+    //refactor settings to its own file??
     this.highIntensitySettings = {
       name: 'High Intensity',
       sets: 20,
@@ -41,13 +40,12 @@ class Timer extends React.Component {
     }
 
     this.currentSettings = {
-      name: '',
       sets: 0,
-      running_sets: 0,
+      runningSets: 0,
       interval: 0,
       rest: 0,
       running: false,
-      running_time: 0
+      runningTime: 0,
     }
   }
 
@@ -55,10 +53,12 @@ class Timer extends React.Component {
 
   setLowIntensity = () => {
     this.setState(this.lowIntensitySettings)
+    this.currentSettings = this.lowIntensitySettings
   }
 
   setHighIntensity = () => {
     this.setState(this.highIntensitySettings)
+    this.currentSettings = this.highIntensitySettings
   }
 
 //// TIMER CONTROLS /////
@@ -72,8 +72,7 @@ class Timer extends React.Component {
   }
 
   startTimer = () => {
-    this.initialState = this.state
-
+  
     if (this.state.sets > 0) {
       this.setState({
         running: true  
@@ -97,15 +96,15 @@ class Timer extends React.Component {
     })
 
     if (currentSeconds === 0) {
-      this.intervalTimer = setInterval(this.intervalCountdown, 1000)
       clearInterval(this.restTimer)
+      this.intervalTimer = setInterval(this.intervalCountdown, 1000)
     }
   }
 
   intervalCountdown = () => {
     const currentSeconds = this.state.interval - 1
     const elapsedTime = this.state.running_time + 1
-  
+   
     this.setState({
       interval: currentSeconds,
       running_time: elapsedTime
@@ -114,6 +113,14 @@ class Timer extends React.Component {
     if (currentSeconds === 0) {
       clearInterval(this.intervalTimer)
 
+      this.setState({
+        sets: this.state.sets - 1,
+        running_sets: this.state.running_sets + 1,
+        interval: this.currentSettings.interval,
+        rest: this.currentSettings.rest
+      })
+
+      this.startTimer()
     }
   }
 
@@ -125,29 +132,31 @@ class Timer extends React.Component {
     })
   }
 
-  // handleResetTimer = () => {
-  //   this.stopTimer()
-  //   console.log("initial state is:", this.initialState)
-  // }
+  handleResetTimer = () => {
+    this.stopTimer()
+    this.setState(this.currentSettings)
+  }
 
+ 
   render() {
-    console.log(this.state)
-    const { name, rest, interval, sets, running, running_sets } = this.state
-
+    const { name, rest, interval, running, running_sets } = this.state
+    const { sets } = this.currentSettings
+   
     return (
       <div>
         <TimerSettings
           setHighIntensity={this.setHighIntensity}
           setLowIntensity={this.setLowIntensity}
         />
-        <h1>{name}</h1>
-        <h1>Sets Remaining: {running_sets + 1} / {sets}</h1>
+        <h5>{name}</h5>
+        <h3>Sets: {running_sets + 1} / {sets} </h3>
         <h1>{rest}</h1>
         <h1>{interval}</h1>
 
         <button onClick={this.handleStartStop}>{running ? 'Stop' : 'Start'}</button>
         <button onClick={this.handleResetTimer}>Reset</button>
 
+  
         {/* 
         <TimerDisplay/>
         <TimerControls/> 
