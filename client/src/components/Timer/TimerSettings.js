@@ -1,9 +1,14 @@
 import React from 'react';
 
-const TimerSettings = () => {
+const TimerSettings = (props) => {
+
+  const { setHighIntensity, setLowIntensity } = props
+
   return (
     <div>
-      Timer Settings
+      <button onClick={setHighIntensity}>Low Intensity</button>
+      <button onClick={setLowIntensity}>High Intensity</button>
+      <button >Customize</button>
     </div>
   );
 };

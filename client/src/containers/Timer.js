@@ -65,9 +65,11 @@ setHighIntensity = () => {
     console.log(this.state)
     return (
       <div>
-        <button onClick={this.setLowIntensity} >Low Intensity</button>
-        <button onClick={this.setHighIntensity}>High Intensity</button>
-        <button>Customize</button>
+        <TimerSettings
+          setHighIntensity={this.setHighIntensity}
+          setLowIntensity={this.setLowIntensity}
+        />
+
         {/* <TimerSettings/>
         <TimerDisplay/>
         <TimerControls/> */}
