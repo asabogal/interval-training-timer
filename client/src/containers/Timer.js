@@ -2,6 +2,12 @@ import React from 'react';
 import TimerSettings from '../components/Timer/TimerSettings'
 import TimerDisplay from '../components/Timer/TimerDisplay'
 import TimerControls from '../components/Timer/TimerControls'
+import intro_alert from '../Alerts/IntroAlert.mp3'
+import rest_alert from '../Alerts/RestAlert.mp3'
+import interval_alert from '../Alerts/IntervalAlert.mp3'
+
+
+
 
 class Timer extends React.Component {
   constructor(props) {
@@ -47,7 +53,14 @@ class Timer extends React.Component {
       running: false,
       runningTime: 0,
     }
+
+    this.alerts = {
+      introAlert: new Audio(intro_alert),
+      restAlert: new Audio(rest_alert),
+      intervalAlert: new Audio(interval_alert)
+    }
   }
+
 
   //// TIMER SETTINGS ////
 
@@ -99,6 +112,8 @@ class Timer extends React.Component {
       running_time: elapsedTime
     })
 
+    this.playAlert()
+
     if (currentSeconds === 0) {
       clearInterval(this.restTimer)
       this.intervalTimer = setInterval(this.intervalCountdown, 1000)
@@ -113,6 +128,8 @@ class Timer extends React.Component {
       interval: currentSeconds,
       running_time: elapsedTime
     })
+
+    this.playAlert()
 
     if (currentSeconds === 0) {
       clearInterval(this.intervalTimer)
@@ -139,6 +156,18 @@ class Timer extends React.Component {
   handleResetTimer = () => {
     this.stopTimer()
     this.setState(this.currentSettings)
+  }
+
+  playAlert = () => {
+    const introAlert = this.alerts.introAlert
+    const intervalAlert = this.alerts.intervalAlert
+   
+     if (this.state.rest === 3) {
+      introAlert.play() 
+    } else if (this.state.interval === 0){
+      intervalAlert.play() 
+    }
+
   }
 
  
