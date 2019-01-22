@@ -9,7 +9,6 @@ const TimerSettings = (props) => {
       <button onClick={setHighIntensity}>Low Intensity</button>
       <button onClick={setLowIntensity}>High Intensity</button>
       <button >Customize</button>
-      
     </div>
   );
 };
