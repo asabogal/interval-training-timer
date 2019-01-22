@@ -6,8 +6,8 @@ const TimerSettings = (props) => {
 
   return (
     <div>
-      <button onClick={setHighIntensity}>Low Intensity</button>
-      <button onClick={setLowIntensity}>High Intensity</button>
+      <button onClick={setHighIntensity}>High Intensity</button>
+      <button onClick={setLowIntensity}>Low Intensity</button>
       <button >Customize</button>
       {/* // add customizations! */}
     </div>
