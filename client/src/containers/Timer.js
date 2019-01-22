@@ -139,7 +139,7 @@ class Timer extends React.Component {
 
  
   render() {
-    const { name, rest, interval, running, running_sets } = this.state
+    const { name, rest, interval, running_sets } = this.state
     const { sets } = this.currentSettings
    
     return (
@@ -148,15 +148,18 @@ class Timer extends React.Component {
           setHighIntensity={this.setHighIntensity}
           setLowIntensity={this.setLowIntensity}
         />
+
         <h5>{name}</h5>
         <h3>Sets: {running_sets + 1} / {sets} </h3>
         <h1>{rest}</h1>
         <h1>{interval}</h1>
 
-        <button onClick={this.handleStartStop}>{running ? 'Stop' : 'Start'}</button>
-        <button onClick={this.handleResetTimer}>Reset</button>
+        <TimerControls 
+          handleStartStop={this.handleStartStop}
+          handleReset={this.handleReset}
+          running={this.state.running}
+          />
 
-  
         {/* 
         <TimerDisplay/>
         <TimerControls/> 

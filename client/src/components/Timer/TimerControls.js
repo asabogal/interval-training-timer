@@ -1,9 +1,13 @@
 import React from 'react';
 
-const TimerControls = () => {
+const TimerControls = (props) => {
+
+  const { handleStartStop, handleReset, running } = props
+
   return (
     <div>
-        Timer Controls
+      <button onClick={handleStartStop}>{running ? 'Stop' : 'Start'}</button>
+      <button onClick={handleReset}>Reset</button>
     </div>
   );
 };
