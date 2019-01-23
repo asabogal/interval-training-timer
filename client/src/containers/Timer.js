@@ -92,8 +92,6 @@ class Timer extends React.Component {
 
 //// TIMER DISPLAY /////
 
-
-
 //// TIMER CONTROLS /////
 
   handleStartStop = () => {
@@ -226,10 +224,6 @@ class Timer extends React.Component {
           handleResetTimer={this.handleResetTimer}
           running={this.state.running}
           />
-
-        {/* 
-        <TimerDisplay/>
-        */}
       </div>
     );
   }
