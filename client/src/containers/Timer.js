@@ -66,16 +66,28 @@ class Timer extends React.Component {
   setLowIntensity = () => {
     this.setState(this.lowIntensitySettings)
     this.currentSettings = this.lowIntensitySettings
+
+    if (this.state.running) {
+      this.stopTimer()
+    }
   }
 
   setHighIntensity = () => {
     this.setState(this.highIntensitySettings)
     this.currentSettings = this.highIntensitySettings
+
+    if (this.state.running) {
+      this.stopTimer()
+    }
   }
 
   setCustomSettings = (settings) => {
     this.setState(settings)
     this.currentSettings = settings
+
+    if (this.state.running) {
+      this.stopTimer()
+    }
   }
 
 //// TIMER DISPLAY /////
