@@ -21,16 +21,19 @@ class CustomizeForm extends React.Component {
     this.setState({
       [name]: value
     })
+  }
 
-    console.log(this.state)
+  handleSubmit = (event) => {
+    event.preventDefault()
+    this.props.setCustomSettings(this.state)
+    this.props.toggle()
+
   }
 
   render() {
-
-  
     return (
       <div>
-          <Form >
+          <Form onSubmit={this.handleSubmit}>
             <FormGroup>
               <Label >Workout Name</Label>
               <Input onChange={this.handleChange} 

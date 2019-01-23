@@ -180,7 +180,7 @@ class Timer extends React.Component {
   render() {
     const { name, rest, interval, running_sets, running_time } = this.state
     const { sets } = this.currentSettings
-   
+
     return (
       <div>
         <TimerSettings
