@@ -5,6 +5,7 @@ import TimerControls from '../components/Timer/TimerControls'
 import intro_alert from '../Alerts/IntroAlert.mp3'
 import interval_alert from '../Alerts/IntervalAlert.mp3'
 
+import { connect } from 'react-redux'
 
 
 
@@ -229,4 +230,10 @@ class Timer extends React.Component {
   }
 }
 
-export default Timer;
+const mapStateToProps = (state) => {
+  return {
+    state: state.settings
+  }
+}
+
+export default connect(mapStateToProps)(Timer);
