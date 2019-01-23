@@ -44,27 +44,34 @@ class CustomizeForm extends React.Component {
             <FormGroup>
               <Label >Number of Sets</Label>
               <Input onChange={this.handleChange} 
+              type="number"
               name="sets"
               value={this.state.sets}
               bsSize="sm" />
             </FormGroup>
             <FormGroup>
-              <Label >Interval Length</Label>
-              <Input onChange={this.handleChange} 
+              <Label >Interval Length (secs)</Label>
+              <Input onChange={this.handleChange}
+              type="number"
+              min="3"
+              max="60" 
               name="interval"
               value={this.state.interval}
               bsSize="sm" />
             </FormGroup>
             <FormGroup>
-              <Label >Rest Length</Label>
-              <Input onChange={this.handleChange} 
+              <Label >Rest Length (secs)</Label>
+              <Input onChange={this.handleChange}
+              type="number"
+              min="3"
+              max="60" 
               name="rest"
               value={this.state.rest}
               bsSize="sm" />
             </FormGroup>
             <FormGroup>
               
-              <Input type="submit"  bsSize="sm"></Input>
+              <Input type="submit" bsSize="sm"></Input>
             </FormGroup>
         </Form>
       </div>
