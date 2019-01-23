@@ -73,6 +73,11 @@ class Timer extends React.Component {
     this.currentSettings = this.highIntensitySettings
   }
 
+  setCustomSettings = (settings) => {
+    this.setState(settings)
+    this.currentSettings = settings
+  }
+
 //// TIMER DISPLAY /////
 
 
@@ -181,6 +186,7 @@ class Timer extends React.Component {
         <TimerSettings
           setHighIntensity={this.setHighIntensity}
           setLowIntensity={this.setLowIntensity}
+          setCustomSettings={this.setCustomSettings}
         />
 
         <TimerDisplay
