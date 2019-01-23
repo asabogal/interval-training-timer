@@ -9,7 +9,7 @@ const TimerControls = (props) => {
     <Container>
       <hr className="my-2" />
       <div>
-      <Button className="btn-circle btn-xl" outline color="info" onClick={handleStartStop}>{running ? 'STOP' : 'START'}</Button>
+      <Button className="btn-circle btn-xl" outline color="info" onClick={handleStartStop}>{running ? 'PAUSE' : 'START'}</Button>
       </div>
       <br></br>
       <div>

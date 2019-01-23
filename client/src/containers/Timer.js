@@ -36,7 +36,7 @@ class Timer extends React.Component {
 
     this.lowIntensitySettings = {
       name: 'Low Intensity',
-      sets: 2,
+      sets: 3,
       running_sets: 0,
       interval: 10,
       rest: 5,
@@ -98,8 +98,12 @@ class Timer extends React.Component {
       this.setState({
         running: true  
       })
-      this.restTimer = setInterval(this.restCountdown, 1000)
-
+      if (this.state.rest > 0) {
+        this.restTimer = setInterval(this.restCountdown, 1000)
+      } else {
+        this.intervalTimer = setInterval(this.intervalCountdown, 1000)
+      }
+      
     } else {
       this.setState({
         running_sets: this.state.sets
@@ -150,6 +154,7 @@ class Timer extends React.Component {
   }
 
   stopTimer = () => {
+    this.pauseAlert()
     clearInterval(this.restTimer)
     clearInterval(this.intervalTimer)
     this.setState({
@@ -173,7 +178,13 @@ class Timer extends React.Component {
       intervalAlert.volume = 0.3
       intervalAlert.play() 
     }
+  }
 
+  pauseAlert = () => {
+    const introAlert = this.alerts.introAlert
+    introAlert.pause()
+    introAlert.currentTime = this.currentSettings.rest
+    console.log(introAlert.currentTime)
   }
 
  
