@@ -47,7 +47,7 @@ const timerReducer = (state = initialState, action) => {
 
     case 'RELOAD_TIMER':
       return {
-        ...state, sets: action.sets, running_sets: action.running_sets, interval: action.interval, rest: action.rest
+        ...state, sets: action.sets - 1, running_sets: action.running_sets + 1, interval: action.interval, rest: action.rest
       }
 
      case 'SET_CURRENT_SETTINGS':

@@ -156,7 +156,7 @@ class Timer extends React.Component {
       const { sets, running_sets} = this.props.state
       const { interval, rest } = this.currentSettings
       this.props.reloadTimer(sets, running_sets, interval, rest )
-
+    
       this.startTimer()
     }
   }
