@@ -9,7 +9,15 @@ const initialState = {
 }
 
 const timerReducer = (state = initialState, action) => {
-  return state
+  console.log(action.settings)
+  switch (action.type) {
+    case 'SET_HIGH_INTENSITY':
+      return action.settings
+    
+    default:
+    return state
+  }
+ 
 }
 
 export default timerReducer;

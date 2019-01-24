@@ -5,6 +5,8 @@ import TimerControls from '../components/Timer/TimerControls'
 import intro_alert from '../Alerts/IntroAlert.mp3'
 import interval_alert from '../Alerts/IntervalAlert.mp3'
 
+import { setHighIntensity } from '../actions/timerActions'
+
 import { connect } from 'react-redux'
 
 
@@ -64,23 +66,39 @@ class Timer extends React.Component {
 
   //// TIMER SETTINGS ////
 
+
+  setHighIntensity = () => {
+    // this.setState(this.lowIntensitySettings)
+    /// -> this is should be hanlded by actions; so call the dispatch action here
+    this.props.setHighIntensity(this.highIntensitySettings)
+    this.currentSettings = this.highIntensitySettings
+  
+
+    if (this.props.state.running) {
+      this.stopTimer()
+    }
+  }
+
+  // setHighIntensity = () => {
+  //   this.setState(this.highIntensitySettings)
+  //   this.currentSettings = this.highIntensitySettings
+
+  //   if (this.state.running) {
+  //     this.stopTimer()
+  //   }
+  // }
+
   setLowIntensity = () => {
     this.setState(this.lowIntensitySettings)
     this.currentSettings = this.lowIntensitySettings
 
-    if (this.state.running) {
+    if (this.props.state.running) {
       this.stopTimer()
     }
   }
 
-  setHighIntensity = () => {
-    this.setState(this.highIntensitySettings)
-    this.currentSettings = this.highIntensitySettings
 
-    if (this.state.running) {
-      this.stopTimer()
-    }
-  }
+ 
 
   setCustomSettings = (settings) => {
     this.setState(settings)
@@ -200,9 +218,10 @@ class Timer extends React.Component {
 
  
   render() {
-    const { name, rest, interval, running_sets, running_time } = this.state
+    const { name, rest, interval, running_sets, running_time } = this.props.state
     const { sets } = this.currentSettings
 
+    console.log("Timer Props are:", this.props.state)
     return (
       <div>
         <TimerSettings
@@ -229,11 +248,20 @@ class Timer extends React.Component {
     );
   }
 }
-
+///?? ALSO CREATE REDUCER FOR HI/LO/CURRENT SETTINGS TO BE PASSED AS PROPS??
 const mapStateToProps = (state) => {
   return {
     state: state.settings
   }
 }
+///returns: this.props.state = {
+//   name: '',
+//   sets: 0,
+//   running_sets: 0,
+//   interval: 0,
+//   rest: 0,
+//   running: false,
+//   running_time: 0
+// }
 
-export default connect(mapStateToProps)(Timer);
+export default connect(mapStateToProps, { setHighIntensity })(Timer);
