@@ -9,9 +9,48 @@ const initialState = {
 }
 
 const timerReducer = (state = initialState, action) => {
-  console.log(action.settings)
+
   switch (action.type) {
     case 'SET_HIGH_INTENSITY':
+      return action.settings
+
+    case 'SET_LOW_INTENSITY':
+      return action.settings
+
+    case 'SET_CUSTOM_SETTINGS':
+      return action.settings
+
+    case 'UPDATE_RUNNING':
+      return {
+        ...state, running: true
+      }
+
+     case 'STOP_RUNNING':
+      return {
+        ...state, running: false
+      } 
+    
+    case 'UPDATE_RUNING_SETS':
+      return {
+      ...state, running_sets: action.runningSets
+    }
+
+    case 'REST_COUNTDOWN':
+      return {
+        ...state, rest: action.currentSeconds, running_time: action.elapsedTime
+      }
+
+    case 'INTERVAL_COUNTDOWN':
+      return {
+      ...state, interval: action.currentSeconds, running_time: action.elapsedTime
+    }
+
+    case 'RELOAD_TIMER':
+      return {
+        ...state, sets: action.sets, running_sets: action.running_sets, interval: action.interval, rest: action.rest
+      }
+
+     case 'SET_CURRENT_SETTINGS':
       return action.settings
     
     default:

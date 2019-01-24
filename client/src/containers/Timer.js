@@ -5,7 +5,20 @@ import TimerControls from '../components/Timer/TimerControls'
 import intro_alert from '../Alerts/IntroAlert.mp3'
 import interval_alert from '../Alerts/IntervalAlert.mp3'
 
-import { setHighIntensity } from '../actions/timerActions'
+import { 
+  setHighIntensity, 
+  setLowIntensity,
+  setCustomSettings,
+  updateRunning,
+  updateRunningSets,
+  stopRunning,
+  restCountdown,
+  intervalCountdown,
+  reloadTimer,
+  setCurrentSettings
+
+} 
+from '../actions/timerActions'
 
 import { connect } from 'react-redux'
 
@@ -15,15 +28,6 @@ class Timer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { 
-      name: '',
-      sets: 0,
-      running_sets: 0,
-      interval: 0,
-      rest: 0,
-      running: false,
-      running_time: 0
-    };
 
 //// DEFAULT BUTTON SETTINGS ////
     //refactor settings to its own file??
@@ -48,12 +52,13 @@ class Timer extends React.Component {
     }
 
     this.currentSettings = {
+      name: '',
       sets: 0,
       runningSets: 0,
       interval: 0,
       rest: 0,
       running: false,
-      runningTime: 0,
+      runningTime: 0
     }
 
     this.alerts = {
@@ -66,45 +71,30 @@ class Timer extends React.Component {
 
   //// TIMER SETTINGS ////
 
-
   setHighIntensity = () => {
-    // this.setState(this.lowIntensitySettings)
-    /// -> this is should be hanlded by actions; so call the dispatch action here
-    this.props.setHighIntensity(this.highIntensitySettings)
+    this.props.setHighIntensity(this.highIntensitySettings) 
     this.currentSettings = this.highIntensitySettings
-  
 
     if (this.props.state.running) {
       this.stopTimer()
     }
   }
-
-  // setHighIntensity = () => {
-  //   this.setState(this.highIntensitySettings)
-  //   this.currentSettings = this.highIntensitySettings
-
-  //   if (this.state.running) {
-  //     this.stopTimer()
-  //   }
-  // }
 
   setLowIntensity = () => {
-    this.setState(this.lowIntensitySettings)
+    this.props.setLowIntensity(this.lowIntensitySettings) 
     this.currentSettings = this.lowIntensitySettings
-
+    
     if (this.props.state.running) {
       this.stopTimer()
     }
   }
 
 
- 
-
   setCustomSettings = (settings) => {
-    this.setState(settings)
+    this.props.setCustomSettings(settings)
     this.currentSettings = settings
 
-    if (this.state.running) {
+    if (this.props.state.running) { 
       this.stopTimer()
     }
   }
@@ -114,7 +104,7 @@ class Timer extends React.Component {
 //// TIMER CONTROLS /////
 
   handleStartStop = () => {
-    if (!this.state.running) {
+    if (!this.props.state.running) {
       this.startTimer()
     } else {
       this.stopTimer()
@@ -123,31 +113,25 @@ class Timer extends React.Component {
 
   startTimer = () => {
   
-    if (this.state.sets > 0) {
-      this.setState({
-        running: true  
-      })
-      if (this.state.rest > 0) {
+    if (this.props.state.sets > 0) { 
+      this.props.updateRunning()
+
+      if (this.props.state.rest > 0) {
         this.restTimer = setInterval(this.restCountdown, 1000)
       } else {
         this.intervalTimer = setInterval(this.intervalCountdown, 1000)
       }
       
     } else {
-      this.setState({
-        running_sets: this.state.sets
-      })
+      this.props.updateRunningSets(this.props.state.sets)
     }
   }
 
   restCountdown = () => {
-    const currentSeconds = this.state.rest - 1
-    const elapsedTime = this.state.running_time + 1
+    const currentSeconds = this.props.state.rest - 1
+    const elapsedTime = this.props.state.running_time + 1 
 
-    this.setState({
-      rest: currentSeconds,
-      running_time: elapsedTime
-    })
+    this.props.restCountdown(currentSeconds, elapsedTime)
 
     this.playAlert()
 
@@ -158,25 +142,20 @@ class Timer extends React.Component {
   }
 
   intervalCountdown = () => {
-    const currentSeconds = this.state.interval - 1
-    const elapsedTime = this.state.running_time + 1
+    const currentSeconds = this.props.state.interval - 1 
+    const elapsedTime = this.props.state.running_time + 1 
    
-    this.setState({
-      interval: currentSeconds,
-      running_time: elapsedTime
-    })
+    this.props.intervalCountdown(currentSeconds, elapsedTime)
 
     this.playAlert()
 
     if (currentSeconds === 0) {
       clearInterval(this.intervalTimer)
 
-      this.setState({
-        sets: this.state.sets - 1,
-        running_sets: this.state.running_sets + 1,
-        interval: this.currentSettings.interval,
-        rest: this.currentSettings.rest
-      })
+      //pass: 
+      const { sets, running_sets} = this.props.state
+      const { interval, rest } = this.currentSettings
+      this.props.reloadTimer(sets, running_sets, interval, rest )
 
       this.startTimer()
     }
@@ -186,24 +165,23 @@ class Timer extends React.Component {
     this.pauseAlert()
     clearInterval(this.restTimer)
     clearInterval(this.intervalTimer)
-    this.setState({
-      running: false
-    })
+    
+    this.props.stopRunning()
   }
 
   handleResetTimer = () => {
     this.stopTimer()
-    this.setState(this.currentSettings)
+    this.props.setCurrentSettings(this.currentSettings)
   }
 
   playAlert = () => {
     const introAlert = this.alerts.introAlert
     const intervalAlert = this.alerts.intervalAlert
    
-     if (this.state.rest === 3) {
+     if (this.props.state.rest === 3) {
       introAlert.volume = 0.3
       introAlert.play() 
-    } else if (this.state.interval === 0){
+    } else if (this.props.state.interval === 0){
       intervalAlert.volume = 0.3
       intervalAlert.play() 
     }
@@ -213,15 +191,13 @@ class Timer extends React.Component {
     const introAlert = this.alerts.introAlert
     introAlert.pause()
     introAlert.currentTime = this.currentSettings.rest
-    console.log(introAlert.currentTime)
   }
 
  
   render() {
-    const { name, rest, interval, running_sets, running_time } = this.props.state
+    const { name, rest, interval, running_sets, running, running_time } = this.props.state // -> use props
     const { sets } = this.currentSettings
 
-    console.log("Timer Props are:", this.props.state)
     return (
       <div>
         <TimerSettings
@@ -242,7 +218,7 @@ class Timer extends React.Component {
         <TimerControls 
           handleStartStop={this.handleStartStop}
           handleResetTimer={this.handleResetTimer}
-          running={this.state.running}
+          running={running}
           />
       </div>
     );
@@ -254,14 +230,18 @@ const mapStateToProps = (state) => {
     state: state.settings
   }
 }
-///returns: this.props.state = {
-//   name: '',
-//   sets: 0,
-//   running_sets: 0,
-//   interval: 0,
-//   rest: 0,
-//   running: false,
-//   running_time: 0
-// }
 
-export default connect(mapStateToProps, { setHighIntensity })(Timer);
+export default connect(mapStateToProps, 
+  { 
+    setHighIntensity, 
+    setLowIntensity, 
+    setCustomSettings, 
+    updateRunning,
+    updateRunningSets,
+    stopRunning,
+    restCountdown,
+    intervalCountdown,
+    reloadTimer,
+    setCurrentSettings
+
+  })(Timer);
