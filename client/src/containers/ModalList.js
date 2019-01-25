@@ -21,7 +21,6 @@ class ModalList extends React.Component {
 
   componentDidMount() {
     this.props.fetchWorkouts()
-    console.log("mounted!!")
   }
 
   render() {
@@ -33,7 +32,7 @@ class ModalList extends React.Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle} >
           <ModalHeader toggle={this.toggle}>Workouts</ModalHeader>
           <ModalBody >
-          { workouts.map(workout => <Workout key={workout.id} workout={workout} setCustomSettings={setCustomSettings}/>)}
+          { workouts.map(workout => <Workout key={workout.id} workout={workout} setCustomSettings={setCustomSettings} toggle={this.toggle}/>)}
           </ModalBody>
           <ModalFooter >
           </ModalFooter>

@@ -3,10 +3,11 @@ import React from 'react';
 
 const Workout = (props) => {
   
-  const { workout } = props
+  const { workout, setCustomSettings, toggle } = props
 
   const handleClick = () => {
-    props.setCustomSettings(workout)
+    setCustomSettings(workout)
+    toggle()
     
   }
 
