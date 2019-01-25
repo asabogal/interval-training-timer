@@ -11,7 +11,7 @@ const TimerSettings = (props) => {
     <Container>
       <Row>
         <Col>
-          <ModalList/>
+          <ModalList setCustomSettings={setCustomSettings}/>
           <Button outline color="info" size="sm" onClick={setHighIntensity}>High Intensity</Button>
           <Button outline color="info" size="sm" onClick={setLowIntensity}>Low Intensity</Button>
           <ModalForm setCustomSettings={setCustomSettings}/>

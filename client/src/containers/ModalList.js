@@ -19,20 +19,21 @@ class ModalList extends React.Component {
     });
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchWorkouts()
+    console.log("mounted!!")
   }
 
   render() {
-    const { workouts } = this.props
-    console.log("these are the list props:", this.props)
+    const { workouts, setCustomSettings } = this.props
+   
     return (
       <div>
         <Button outline color="info" size="sm" onClick={this.toggle}>Workouts</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} >
           <ModalHeader toggle={this.toggle}>Workouts</ModalHeader>
           <ModalBody >
-          { workouts.map(workout => <Workout key={workout.id} workout={workout}/>)}
+          { workouts.map(workout => <Workout key={workout.id} workout={workout} setCustomSettings={setCustomSettings}/>)}
           </ModalBody>
           <ModalFooter >
           </ModalFooter>

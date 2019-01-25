@@ -112,7 +112,7 @@ class Timer extends React.Component {
   }
 
   startTimer = () => {
-  
+    console.log("timer state is:", this.props.state)
     if (this.props.state.sets > 0) { 
       this.props.updateRunning()
 
