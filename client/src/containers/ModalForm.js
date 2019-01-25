@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import CustomizeForm from '../components/Timer/CustomizeForm'
 
 class ModalForm extends React.Component {
@@ -26,10 +26,6 @@ class ModalForm extends React.Component {
           <ModalBody >
             <CustomizeForm setCustomSettings={this.props.setCustomSettings} toggle={this.toggle} />
           </ModalBody>
-          <ModalFooter >
-            <Button color="primary" onClick={this.toggle}>Save?</Button>{' '}
-            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
-          </ModalFooter>
         </Modal>
       </div>
     );

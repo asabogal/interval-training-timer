@@ -73,7 +73,7 @@ class CustomizeForm extends React.Component {
             </FormGroup>
             <FormGroup>
               
-              <Input type="submit" value="Save As Preset" bsSize="sm"></Input>
+              <Input type="submit" value="Update Settings" bsSize="sm"></Input>
             </FormGroup>
         </Form>
       </div>
