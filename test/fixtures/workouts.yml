@@ -3,7 +3,7 @@
 one:
   name: MyString
   sets: 1
-  sets_done: 1
+  running_sets: 1
   interval: 1
   rest: 1
   running: false
@@ -12,7 +12,7 @@ one:
 two:
   name: MyString
   sets: 1
-  sets_done: 1
+  running_sets: 1
   interval: 1
   rest: 1
   running: false

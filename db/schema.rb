@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2019_01_20_202913) do
   create_table "workouts", force: :cascade do |t|
     t.string "name"
     t.integer "sets"
-    t.integer "sets_done", default: 0
+    t.integer "running_sets", default: 0
     t.integer "interval"
     t.integer "rest"
     t.boolean "running", default: false

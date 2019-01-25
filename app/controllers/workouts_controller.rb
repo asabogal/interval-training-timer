@@ -20,7 +20,7 @@ class WorkoutsController < ApplicationController
   private 
 
   def workout_params
-    params.require(:workout).permit(:name, :sets, :sets_done, :interval, :rest, :running, :running_time)
+    params.require(:workout).permit(:name, :sets, :running_sets, :interval, :rest, :running, :running_time)
   end
 
 end
