@@ -11,7 +11,7 @@ class WorkoutsController < ApplicationController
        # @workout = @user.workouts.build(workout_params)
     @workout = Workout.new(workout_params)
     if @workout.save
-      render json: @workout, status: :created, location: @workout
+      render json: @workout, status: :created
     else
       render json: @workout.errors, status: :unprocessable_entity
     end
