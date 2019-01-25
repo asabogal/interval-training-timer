@@ -24,14 +24,15 @@ class ModalList extends React.Component {
   }
 
   render() {
+    const { workouts } = this.props
+    console.log("these are the list props:", this.props)
     return (
       <div>
         <Button outline color="info" size="sm" onClick={this.toggle}>Workouts</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} >
           <ModalHeader toggle={this.toggle}>Workouts</ModalHeader>
           <ModalBody >
-            <Workout setCustomSettings={this.props.setCustomSettings} toggle={this.toggle} />
-            <Workout setCustomSettings={this.props.setCustomSettings} toggle={this.toggle} />
+          { workouts.map(workout => <Workout key={workout.id} workout={workout}/>)}
           </ModalBody>
           <ModalFooter >
           </ModalFooter>
@@ -41,6 +42,10 @@ class ModalList extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    workouts: state.workouts
+  }
+}
 
-
-export default connect(null, {fetchWorkouts})(ModalList);
+export default connect(mapStateToProps, {fetchWorkouts})(ModalList);

@@ -1,9 +1,12 @@
 import React from 'react';
 
-const Workout = () => {
+const Workout = (props) => {
+  
+  const { workout } = props
+
   return (
     <div>
-      RENDER WORKOUT
+      <p>{workout.name}</p>
     </div>
   );
 };
