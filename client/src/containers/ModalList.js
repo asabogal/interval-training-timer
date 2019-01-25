@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Workout from '../components/Workouts/Workout'
+import { fetchWorkouts } from '../actions/apiActions'
+import { connect } from 'react-redux'
 
 class ModalList extends React.Component {
   constructor(props) {
@@ -15,6 +17,10 @@ class ModalList extends React.Component {
     this.setState({
       modal: !this.state.modal
     });
+  }
+
+  componentWillMount() {
+    this.props.fetchWorkouts()
   }
 
   render() {
@@ -35,4 +41,6 @@ class ModalList extends React.Component {
   }
 }
 
-export default ModalList;
+
+
+export default connect(null, {fetchWorkouts})(ModalList);
