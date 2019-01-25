@@ -6,8 +6,6 @@ import intro_alert from '../Alerts/IntroAlert.mp3'
 import interval_alert from '../Alerts/IntervalAlert.mp3'
 
 import { 
-  setHighIntensity, 
-  setLowIntensity,
   setCustomSettings,
   updateRunning,
   updateRunningSets,
@@ -28,29 +26,6 @@ class Timer extends React.Component {
   constructor(props) {
     super(props);
 
-
-//// DEFAULT BUTTON SETTINGS ////
-    //refactor settings to its own file??
-    this.highIntensitySettings = {
-      name: 'High Intensity',
-      sets: 20,
-      running_sets: 0,
-      interval: 45,
-      rest: 10,
-      running: false,
-      running_time: 0
-    }
-
-    this.lowIntensitySettings = {
-      name: 'Low Intensity',
-      sets: 3,
-      running_sets: 0,
-      interval: 10,
-      rest: 5,
-      running: false,
-      running_time: 0
-    }
-
     this.currentSettings = {
       name: '',
       sets: 0,
@@ -63,32 +38,11 @@ class Timer extends React.Component {
 
     this.alerts = {
       introAlert: new Audio(intro_alert),
-
       intervalAlert: new Audio(interval_alert)
     }
   }
 
-
   //// TIMER SETTINGS ////
-
-  setHighIntensity = () => {
-    this.props.setHighIntensity(this.highIntensitySettings) 
-    this.currentSettings = this.highIntensitySettings
-
-    if (this.props.state.running) {
-      this.stopTimer()
-    }
-  }
-
-  setLowIntensity = () => {
-    this.props.setLowIntensity(this.lowIntensitySettings) 
-    this.currentSettings = this.lowIntensitySettings
-    
-    if (this.props.state.running) {
-      this.stopTimer()
-    }
-  }
-
 
   setCustomSettings = (settings) => {
     this.props.setCustomSettings(settings)
@@ -233,8 +187,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, 
   { 
-    setHighIntensity, 
-    setLowIntensity, 
     setCustomSettings, 
     updateRunning,
     updateRunningSets,

@@ -1,16 +1,3 @@
-export const setHighIntensity = (settings) => {
-  return {
-    type: 'SET_HIGH_INTENSITY',
-    settings
-  }
-}
-
-export const setLowIntensity = (settings) => {
-  return {
-    type: 'SET_LOW_INTENSITY',
-    settings
-  }
-}
 
 export const setCustomSettings = (settings) => {
   return {
