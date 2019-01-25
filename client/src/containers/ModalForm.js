@@ -22,7 +22,7 @@ class ModalForm extends React.Component {
       <div>
         <Button outline color="info" size="sm" onClick={this.toggle}>Customize</Button>
         <Modal  isOpen={this.state.modal} toggle={this.toggle} >
-          <ModalHeader  toggle={this.toggle}>New Workout</ModalHeader>
+          <ModalHeader  toggle={this.toggle}>Customize Settings:</ModalHeader>
           <ModalBody >
             <CustomizeForm setCustomSettings={this.props.setCustomSettings} toggle={this.toggle} />
           </ModalBody>

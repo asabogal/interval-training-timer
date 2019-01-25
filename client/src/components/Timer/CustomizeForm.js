@@ -39,12 +39,14 @@ class CustomizeForm extends React.Component {
               <Input onChange={this.handleChange} 
               name="name"
               value={this.state.name}
-              bsSize="sm" />
+              bsSize="sm"
+              required />
             </FormGroup>
             <FormGroup>
               <Label >Number of Sets</Label>
               <Input onChange={this.handleChange} 
               type="number"
+              min="1"
               name="sets"
               value={this.state.sets}
               bsSize="sm" />
@@ -71,7 +73,7 @@ class CustomizeForm extends React.Component {
             </FormGroup>
             <FormGroup>
               
-              <Input type="submit" bsSize="sm"></Input>
+              <Input type="submit" value="Save As Preset" bsSize="sm"></Input>
             </FormGroup>
         </Form>
       </div>
