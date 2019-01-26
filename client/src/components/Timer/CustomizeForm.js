@@ -30,10 +30,7 @@ class CustomizeForm extends React.Component {
     event.preventDefault()
     this.props.createWorkout(this.state)
     this.props.setCustomSettings(this.state)
-    
-    
     this.props.toggle()
-
   }
 
   render() {
