@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import Workout from '../components/Workouts/Workout'
 import { fetchWorkouts } from '../actions/apiActions'
 import { connect } from 'react-redux'
+import WorkoutList from '../components/Workouts/WorkoutList';
 
 class ModalList extends React.Component {
   constructor(props) {
@@ -19,12 +19,8 @@ class ModalList extends React.Component {
     });
   }
 
-  componentDidMount() {
-    this.props.fetchWorkouts()
-  }
-
   render() {
-    const { workouts, setCustomSettings } = this.props
+    const { workouts, setCustomSettings, fetchWorkouts } = this.props
    
     return (
       <div>
@@ -32,7 +28,7 @@ class ModalList extends React.Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle} >
           <ModalHeader toggle={this.toggle}>Workouts</ModalHeader>
           <ModalBody >
-          { workouts.map(workout => <Workout key={workout.id} workout={workout} setCustomSettings={setCustomSettings} toggle={this.toggle}/>)}
+           <WorkoutList workouts={workouts} setCustomSettings={setCustomSettings} fetchWorkouts={fetchWorkouts} toggle={this.toggle} /> 
           </ModalBody>
           <ModalFooter >
           </ModalFooter>
