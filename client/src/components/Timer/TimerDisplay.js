@@ -63,7 +63,6 @@ const TimerDisplay = (props) => {
         {renderTimer(interval, rest)}
         Elapsed
         {renderRunningTime(runningTime)}
-       
         </Col>
       </Row>
     </Container>
