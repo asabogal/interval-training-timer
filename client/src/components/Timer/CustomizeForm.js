@@ -1,5 +1,8 @@
 import React from 'react';
 import { Form, FormGroup, Input, Label } from 'reactstrap';
+import { createWorkout } from '../../actions/apiActions'
+
+import { connect } from 'react-redux'
 
 class CustomizeForm extends React.Component {
   constructor(props) {
@@ -25,7 +28,10 @@ class CustomizeForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
+    this.props.createWorkout(this.state)
     this.props.setCustomSettings(this.state)
+    
+    
     this.props.toggle()
 
   }
@@ -81,4 +87,4 @@ class CustomizeForm extends React.Component {
   }
 }
 
-export default CustomizeForm;
+export default connect(null, { createWorkout })(CustomizeForm);
