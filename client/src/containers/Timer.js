@@ -150,11 +150,11 @@ class Timer extends React.Component {
 
  
   render() {
-    const { name, rest, interval, running_sets, running, running_time } = this.props.state // -> use props
+    const { name, rest, interval, running_sets, running, running_time } = this.props.state
     const { sets } = this.currentSettings
 
     return (
-      <Jumbotron>
+      <Jumbotron className="App">
         <TimerSettings
           setHighIntensity={this.setHighIntensity}
           setLowIntensity={this.setLowIntensity}
