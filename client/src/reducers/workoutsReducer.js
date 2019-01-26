@@ -4,6 +4,9 @@ const workoutsReducer = (state = [], action) => {
     case 'FETCH_WORKOUTS':
       return action.workouts
 
+    //  case 'CREATE_WORKOUT':
+    //   return state.concat(action.workout)
+
     default:
       return state
   
