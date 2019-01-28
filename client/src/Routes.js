@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import App from './containers/App'
 import Timer from './containers/Timer'
 import CustomizeForm from './components/Timer/CustomizeForm'
-import About from './components/About'
 import ModalAbout from './containers/ModalAbout'
 
 const AppRoutes = () => {
