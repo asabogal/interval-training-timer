@@ -2,8 +2,9 @@ import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import App from './containers/App'
 import Timer from './containers/Timer'
-import CustomizeForm from './components/Timer/CustomizeForm'
-import ModalAbout from './containers/ModalAbout'
+import ModalForm from './containers/ModalForm'
+import ModalList from './containers/ModalList'
+import About from './components/About'
 
 const AppRoutes = () => {
 
@@ -12,8 +13,9 @@ const AppRoutes = () => {
     <Switch>
       <Route exact path= '/' component={App}/>
       <Route path= '/timer' component={Timer}/>
-      <Route path= '/new' component={CustomizeForm}/>
-      <Route path= '/about' component={ModalAbout}/>
+      <Route exact path= '/workouts' component={ModalList}/>
+      <Route exact path= '/workouts/new' component={ModalForm}/>
+      <Route path= '/about' component={About}/>
     </Switch>
    </BrowserRouter>
  )
