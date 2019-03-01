@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #e9ecef;
 }
 
 .App-logo {
@@ -15,6 +16,10 @@
   font-size: calc(10px + 2vmin);
   color: #2f8694;
   background-color: #e9ecef;
+}
+
+.timer-container {
+  padding-top: 50px;
 }
 
 .App-link {

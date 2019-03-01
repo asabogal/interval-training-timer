@@ -4,7 +4,6 @@ import TimerDisplay from '../components/Timer/TimerDisplay'
 import TimerControls from '../components/Timer/TimerControls'
 import intro_alert from '../Alerts/IntroAlert.mp3'
 import interval_alert from '../Alerts/IntervalAlert.mp3'
-import { Jumbotron } from 'reactstrap'
 
 import { 
   setCustomSettings,
@@ -154,7 +153,7 @@ class Timer extends React.Component {
     const { sets } = this.currentSettings
 
     return (
-      <Jumbotron className="App">
+      <div className="App timer-container">
         <TimerSettings
           setHighIntensity={this.setHighIntensity}
           setLowIntensity={this.setLowIntensity}
@@ -175,7 +174,7 @@ class Timer extends React.Component {
           handleResetTimer={this.handleResetTimer}
           running={running}
           />
-      </Jumbotron>
+      </div>
     );
   }
 }
