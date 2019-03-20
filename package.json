@@ -9,7 +9,9 @@
   },
   "scripts": {
     "build": "cd client && yarn install && yarn run build && cd ..",
-    "deploy": "cp -a front-end-app/build/. public/",
+    "deploy": "cp -a client/build/. public/",
     "postinstall": "yarn run build && yarn run deploy && echo 'Client built!'"
-  }
+  },
+  "author": "alejandro sabogal",
+  "license": "ISC"
 }
