@@ -1,4 +1,4 @@
-const apiURL = 'http://localhost:3001'
+const apiURL = 'https:interval-training-timer.herokuapp.com/'
 
 export const fetchWorkouts = () => {
   let data = {
