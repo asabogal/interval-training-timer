@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins '*'
+    origins ['localhost:3000', 'interval-training-timer.herokuapp.com']
 
     resource '*',
       headers: :any,
