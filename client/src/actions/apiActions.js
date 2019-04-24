@@ -1,4 +1,4 @@
-const apiURL = 'http://localhost:3001'
+// const apiURL = 'http://localhost:3001'
 
 export const fetchWorkouts = () => {
   let data = {
@@ -10,7 +10,7 @@ export const fetchWorkouts = () => {
   }
 
   return dispatch => {
-    fetch(`${apiURL}/workouts`, data)
+    fetch(`/workouts`, data)
       .then(response => response.json())
       .then(workouts => dispatch({
           type: 'FETCH_WORKOUTS',
@@ -31,7 +31,7 @@ export const createWorkout = (workout) => {
   }
 
   return dispatch => {
-    fetch(`${apiURL}/workouts`, data)
+    fetch(`/workouts`, data)
       .then(response => response.json())
       .then(workout => dispatch({
         type: 'CREATE_WORKOUT',
