@@ -1,4 +1,4 @@
-const apiURL = 'http://localhost:3000'
+const apiURL = 'http://localhost:3001'
 
 export const fetchWorkouts = () => {
   let data = {
