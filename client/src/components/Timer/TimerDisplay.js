@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Row, Col } from 'reactstrap'
+import { Container, Row, Col, Progress } from 'reactstrap'
+// import TimerBar from '../../containers/TimerBar'
 
 const TimerDisplay = (props) => {
 
@@ -9,7 +10,8 @@ const TimerDisplay = (props) => {
     runningSets,
     interval,
     rest,
-    runningTime} = props
+    runningTime,
+    totalTime} = props
 
   const renderTimer = (interval, rest) => {
       if (rest > 0) {
@@ -63,6 +65,15 @@ const TimerDisplay = (props) => {
         {renderTimer(interval, rest)}
         Elapsed
         {renderRunningTime(runningTime)}
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+        <div>
+        <Progress animated value={runningTime} max={totalTime} color="red"/>
+        </div>
+        
+        {/* <TimerBar runningTime={runningTime} totalTime={totalTime}/> */}
         </Col>
       </Row>
     </Container>

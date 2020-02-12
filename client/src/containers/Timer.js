@@ -47,7 +47,8 @@ class Timer extends React.Component {
   setCustomSettings = (settings) => {
     this.props.setCustomSettings(settings)
     this.currentSettings = settings
-
+    this.totalTime = (parseInt(settings.rest) + parseInt(settings.interval)) * parseInt(settings.sets)
+ 
     if (this.props.state.running) { 
       this.stopTimer()
     }
@@ -66,7 +67,6 @@ class Timer extends React.Component {
   }
 
   startTimer = () => {
-    console.log("timer state is:", this.props.state)
     if (this.props.state.sets > 0) { 
       this.props.updateRunning()
 
@@ -151,6 +151,7 @@ class Timer extends React.Component {
   render() {
     const { name, rest, interval, running_sets, running, running_time } = this.props.state
     const { sets } = this.currentSettings
+    const totalTime = this.totalTime
 
     return (
       <div className="App timer-container">
@@ -167,6 +168,7 @@ class Timer extends React.Component {
           interval={interval}
           rest={rest}
           runningTime={running_time}
+          totalTime={totalTime}
         />
 
         <TimerControls 
