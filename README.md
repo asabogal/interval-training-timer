@@ -7,5 +7,5 @@ Customizable, High-Intensity-Interval-Training Timer. Built on React.js front-en
 
 ## V1 - uses Ruby on Rails as the back-end API (see v1 branch)
 
-## V2 - uses Node/Express as the back-end API (see v2 bracnh)
+## V2 - uses Node/Express as the back-end API (see v2 branch)
 
