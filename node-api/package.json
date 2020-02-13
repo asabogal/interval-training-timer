@@ -1,0 +1,8 @@
+{
+  "name": "node-api",
+  "version": "1.0.0",
+  "description": "Node/Express API",
+  "main": "index.js",
+  "author": "Alejandro Sabogal",
+  "license": "MIT"
+}
