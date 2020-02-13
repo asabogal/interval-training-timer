@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-router.get('/workouts', (req, res, next) => {
+router.get('/', (req, res, next) => {
   console.log('GET WORKOUTS')
   res.json(
     {

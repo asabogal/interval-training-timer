@@ -6,7 +6,10 @@ const usersRoutes = require('./routes/users-routes');
 
 const app = express();
 
-app.use(workoutsRoutes);
-app.use(usersRoutes);
+// Workouts router
+app.use('/api/workouts', workoutsRoutes);
+
+// Users router
+app.use('/api/users', usersRoutes);
 
 app.listen(5000);
