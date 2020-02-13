@@ -1,7 +1,9 @@
 # interval-training-timer
 
-Customizable, High-Intensity-Interval-Training Timer. Built on React.js front-end Client, and Rails back-end Api.
 (App renamed to Interval Trainer)
+
+Customizable, High-Intensity-Interval-Training Timer. Built on React.js front-end Client
+
 
 ## V1 - uses Ruby on Rails as the back-end API (see v1 branch)
 
