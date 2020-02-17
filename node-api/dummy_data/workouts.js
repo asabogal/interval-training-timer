@@ -20,7 +20,7 @@ const dummyWorkouts = [
     restTime: 10,
     isRunning: false,
     elapsedTime: 0,
-    count: 0,
+    count: 2,
     userID: 2
   }
 ]
