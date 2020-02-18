@@ -1,4 +1,4 @@
-const users = [
+const dummyUsers = [
   {
     id: 1,
     username: 'user1',
@@ -32,7 +32,7 @@ const users = [
       weekTotal: 0
     },
     record: []
-  },
-
-
+  }
 ]
+
+module.exports = dummyUsers;
